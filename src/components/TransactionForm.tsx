@@ -44,7 +44,7 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
 
                 // Fetch couple info to see if user has a couple
                 const coupleRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/couple`, {
-                    headers: { Authorization: `Bearer ${session.access_token}` },
+                    headers: { Authorization: `${session.access_token}` },
                 });
                 const coupleData = await coupleRes.json();
                 if (coupleData) setCoupleId(coupleData.id);

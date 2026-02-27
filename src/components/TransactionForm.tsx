@@ -37,7 +37,7 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
             try {
                 // Fetch categories
                 const catRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
-                    headers: { Authorization: `Bearer ${session.access_token}` },
+                    headers: { Authorization: `${session.access_token}` },
                 });
                 const catData = await catRes.json();
                 setCategories(catData);

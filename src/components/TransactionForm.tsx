@@ -37,17 +37,17 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
             try {
                 // Fetch categories
                 const catRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
-                    headers: { Authorization: `${session.access_token}` },
+                    headers: { Authorization: `Bearer ${session.access_token}` },
                 });
                 const catData = await catRes.json();
                 setCategories(catData);
 
                 // Fetch couple info to see if user has a couple
                 const coupleRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/couple`, {
-                    headers: { Authorization: `${session.access_token}` },
+                    headers: { Authorization: `Bearer ${session.access_token}` },
                 });
                 const coupleData = await coupleRes.json();
-                if (coupleData) setCoupleId(coupleData.id);
+                if (coupleRes.ok && coupleData?.id) setCoupleId(coupleData.id);
             } catch (err) {
                 console.error('Error fetching categories or couple:', err);
             }
